@@ -1,0 +1,30 @@
+# Genel
+.DS_Store
+Thumbs.db
+*.log
+*.tmp
+*.swp
+
+# Ortak build çıktıları
+build/
+dist/
+out/
+coverage/
+
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn.lock
+package-lock.json
+
+# Flutter / Dart
+.dart_tool/
+.packages
+pubspec.lock
+build/
+
+# Ortam dosyaları
+.env
+.env.local
+.env.*.local
+
