@@ -39,16 +39,13 @@ Her sprint için:
 
 ## 3. Faz 0 – Hazırlık ve Altyapı (Detaylı)
 ### 3.1 Görevler
-- F0-G1: Teknoloji sepetinin netleştirilmesi
-  - Backend için: Node.js + TypeScript (ör. NestJS veya Express tabanlı bir yapı) seçimi kararı.
-  - Frontend için: 
-    - Mobil öncelikli Flutter veya
-    - React/Next.js tabanlı web uygulaması kararı.
-  - Karar, Documentation/ProjeBaslangic.md’ye uygun olacak ve gerekçesi kısa not olarak eklenecek.
-- F0-G2: Geliştirme ortamı standardı
-  - Versiyon kontrol sistemi: Git + GitHub (mevcut repo).
-  - Branch stratejisi: `main`, `develop`, `feature/*`.
-  - Kod formatlama ve lint kuralları kararları (ör. ESLint, Prettier; Flutter için `flutter format`).
+- F0-G1: Teknoloji sepetinin netleştirilmesi **(TAMAMLANDI – bkz. Documentation/Tech_Decisions.md)**
+  - Backend için: Node.js + TypeScript (NestJS) seçimi yapıldı.
+  - Frontend için: mobil öncelikli Flutter tercih edildi; web hedefi Flutter Web üzerinden sağlanacak.
+  - Kararlar, Documentation/Tech_Decisions.md dosyasında gerekçeleriyle kaydedildi.
+- F0-G2: Geliştirme ortamı standardı **(TAMAMLANDI – bkz. Documentation/Tech_Decisions.md)**
+  - Versiyon kontrol sistemi: Git + GitHub (mevcut repo) ve branch stratejisi `main`/`develop`/`feature/*`.
+  - Kod formatlama ve lint kuralları kararları belirlendi (ESLint + Prettier, `dart format`).
 - F0-G3: CI/CD Taslak
   - Basit bir CI pipeline taslağı: lint + test + build aşamaları.
   - Henüz kod yokken yalnızca plan ve örnek YAML taslağı.
@@ -85,7 +82,7 @@ Her sprint için:
     - `session_state` benzeri bir tablo veya JSON alan.
 - F1-G5: SQL Şema Taslaklarının Yazılması
   - Tüm tablolar için CREATE TABLE taslakları.
-  - Documentation veya Project/config altında `schema.sql` gibi bir dosyada saklanması planı.
+  - Documentation veya Project/config altında `schema.sql` gibi bir dosyada saklanması planı **(başlangıç versiyonu Project/config/schema/initial_schema.sql olarak eklendi)**.
 
 ### 4.2 Kabul Kriterleri
 - Ana tablolar ve ilişki diyagramı tanımlanmış.
@@ -180,4 +177,3 @@ Detayları Documentation/Roadmap.md ile uyumlu olacak şekilde:
   - Git deposu başlatılır, dokümanlar commit edilir.
   - İlk teknik spike’lar (küçük prototipler) için task’ler açılır.
   - Sprint 1 için net backlog çıkarılır (özellikle Faz 0–1 görevleri).
-

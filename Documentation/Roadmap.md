@@ -9,8 +9,8 @@
 - [x] Standart klasör yapısının oluşturulması (Documentation, Project/src, assets, config, _temp, Sessions, Testing).
 - [x] Oturum kayıt sisteminin devreye alınması (Sessions altında tarih/saat bazlı dosyalar).
 - [ ] Supabase projesinin oluşturulması ve temel ayarların yapılması.
-- [ ] Projede kullanılacak istemci teknolojisinin netleştirilmesi (Flutter, React/Next.js vb.).
-- [ ] Geliştirme ortamı ve temel araçların belirlenmesi (versiyon kontrol, CI/CD taslağı).
+- [x] Projede kullanılacak istemci teknolojisinin netleştirilmesi (Flutter seçildi, bkz. Documentation/Tech_Decisions.md).
+- [x] Geliştirme ortamı ve temel araçların belirlenmesi (bkz. Documentation/Tech_Decisions.md).
 
 ## 2. Faz 1 – Çekirdek Domain ve Veri Modeli
 - [ ] Kullanıcı ve kimlik doğrulama modeli:
@@ -86,4 +86,3 @@
 - [ ] Her büyük özellik eklenmeden önce:
   - Documentation/ProjeBaslangic.md veya ilgili ek doküman güncellenecek.
   - Sonra geliştirilecek kod bu güncel dokümana göre planlanacak.
-
