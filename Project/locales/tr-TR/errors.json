@@ -1,0 +1,51 @@
+{
+  "ERROR_NETWORK": "Bağlantı hatası. Lütfen internet bağlantınızı kontrol edin.",
+  "ERROR_SERVER": "Sunucu hatası. Lütfen daha sonra tekrar deneyin.",
+  "ERROR_TIMEOUT": "İstek zaman aşımına uğradı.",
+  "ERROR_UNKNOWN": "Bilinmeyen bir hata oluştu.",
+
+  "ERROR_AUTH_INVALID_CREDENTIALS": "Geçersiz e-posta veya şifre.",
+  "ERROR_AUTH_USER_EXISTS": "Bu e-posta adresi zaten kullanımda.",
+  "ERROR_AUTH_WEAK_PASSWORD": "Şifre çok zayıf. En az 8 karakter olmalıdır.",
+  "ERROR_AUTH_EMAIL_INVALID": "Geçersiz e-posta adresi.",
+  "ERROR_AUTH_SESSION_EXPIRED": "Oturumunuz sona erdi. Lütfen tekrar giriş yapın.",
+
+  "ERROR_VALIDATION_REQUIRED": "{field} alanı zorunludur.",
+  "ERROR_VALIDATION_MIN_LENGTH": "{field} en az {min} karakter olmalıdır.",
+  "ERROR_VALIDATION_MAX_LENGTH": "{field} en fazla {max} karakter olabilir.",
+  "ERROR_VALIDATION_INVALID_FORMAT": "{field} geçersiz formatta.",
+
+  "ERROR_GAME_NOT_FOUND": "Oyun bulunamadı.",
+  "ERROR_GAME_FULL": "Oyun odası dolu.",
+  "ERROR_GAME_ALREADY_STARTED": "Oyun zaten başlamış.",
+  "ERROR_GAME_NOT_YOUR_TURN": "Henüz senin sıran değil.",
+  "ERROR_GAME_INVALID_MOVE": "Geçersiz hamle.",
+  "ERROR_GAME_ROOM_CODE_INVALID": "Geçersiz oda kodu.",
+
+  "ERROR_MATCHMAKING_FAILED": "Eşleşme başarısız oldu. Lütfen tekrar deneyin.",
+  "ERROR_MATCHMAKING_TIMEOUT": "Eşleşme zaman aşımına uğradı.",
+
+  "ERROR_USERNAME_TAKEN": "Bu kullanıcı adı zaten alınmış.",
+  "ERROR_USERNAME_INVALID": "Kullanıcı adı geçersiz karakterler içeriyor.",
+  "ERROR_USERNAME_TOO_SHORT": "Kullanıcı adı çok kısa.",
+  "ERROR_USERNAME_TOO_LONG": "Kullanıcı adı çok uzun.",
+  "ERROR_USERNAME_INAPPROPRIATE": "Kullanıcı adı uygunsuz içerik barındırıyor.",
+
+  "ERROR_ROOM_NAME_INAPPROPRIATE": "Oda adı uygunsuz içerik barındırıyor.",
+  "ERROR_ROOM_NOT_FOUND": "Oda bulunamadı.",
+
+  "ERROR_FRIEND_REQUEST_ALREADY_SENT": "Bu kullanıcıya zaten arkadaşlık isteği gönderdiniz.",
+  "ERROR_FRIEND_ALREADY_FRIENDS": "Bu kullanıcı zaten arkadaşınız.",
+  "ERROR_FRIEND_REQUEST_NOT_FOUND": "Arkadaşlık isteği bulunamadı.",
+
+  "ERROR_RATE_LIMIT": "Çok fazla istek gönderdiniz. Lütfen biraz bekleyin.",
+  "ERROR_PERMISSION_DENIED": "Bu işlem için yetkiniz yok.",
+
+  "ERROR_FILE_TOO_LARGE": "Dosya çok büyük. Maksimum {maxSize} MB yüklenebilir.",
+  "ERROR_FILE_INVALID_TYPE": "Geçersiz dosya türü.",
+
+  "ERROR_ACCOUNT_BANNED": "Hesabınız yasaklanmış. Detaylar için destek ile iletişime geçin.",
+  "ERROR_ACCOUNT_RESTRICTED": "Hesabınız geçici olarak kısıtlanmış.",
+
+  "ERROR_MAINTENANCE": "Sistem bakımda. Lütfen daha sonra tekrar deneyin."
+}

@@ -1,0 +1,51 @@
+{
+  "ERROR_NETWORK": "Connection error. Please check your internet connection.",
+  "ERROR_SERVER": "Server error. Please try again later.",
+  "ERROR_TIMEOUT": "Request timed out.",
+  "ERROR_UNKNOWN": "An unknown error occurred.",
+
+  "ERROR_AUTH_INVALID_CREDENTIALS": "Invalid email or password.",
+  "ERROR_AUTH_USER_EXISTS": "This email address is already in use.",
+  "ERROR_AUTH_WEAK_PASSWORD": "Password is too weak. Must be at least 8 characters.",
+  "ERROR_AUTH_EMAIL_INVALID": "Invalid email address.",
+  "ERROR_AUTH_SESSION_EXPIRED": "Your session has expired. Please login again.",
+
+  "ERROR_VALIDATION_REQUIRED": "{field} is required.",
+  "ERROR_VALIDATION_MIN_LENGTH": "{field} must be at least {min} characters.",
+  "ERROR_VALIDATION_MAX_LENGTH": "{field} can be at most {max} characters.",
+  "ERROR_VALIDATION_INVALID_FORMAT": "{field} has invalid format.",
+
+  "ERROR_GAME_NOT_FOUND": "Game not found.",
+  "ERROR_GAME_FULL": "Game room is full.",
+  "ERROR_GAME_ALREADY_STARTED": "Game has already started.",
+  "ERROR_GAME_NOT_YOUR_TURN": "It's not your turn yet.",
+  "ERROR_GAME_INVALID_MOVE": "Invalid move.",
+  "ERROR_GAME_ROOM_CODE_INVALID": "Invalid room code.",
+
+  "ERROR_MATCHMAKING_FAILED": "Matchmaking failed. Please try again.",
+  "ERROR_MATCHMAKING_TIMEOUT": "Matchmaking timed out.",
+
+  "ERROR_USERNAME_TAKEN": "This username is already taken.",
+  "ERROR_USERNAME_INVALID": "Username contains invalid characters.",
+  "ERROR_USERNAME_TOO_SHORT": "Username is too short.",
+  "ERROR_USERNAME_TOO_LONG": "Username is too long.",
+  "ERROR_USERNAME_INAPPROPRIATE": "Username contains inappropriate content.",
+
+  "ERROR_ROOM_NAME_INAPPROPRIATE": "Room name contains inappropriate content.",
+  "ERROR_ROOM_NOT_FOUND": "Room not found.",
+
+  "ERROR_FRIEND_REQUEST_ALREADY_SENT": "You've already sent a friend request to this user.",
+  "ERROR_FRIEND_ALREADY_FRIENDS": "This user is already your friend.",
+  "ERROR_FRIEND_REQUEST_NOT_FOUND": "Friend request not found.",
+
+  "ERROR_RATE_LIMIT": "Too many requests. Please wait a moment.",
+  "ERROR_PERMISSION_DENIED": "You don't have permission for this action.",
+
+  "ERROR_FILE_TOO_LARGE": "File is too large. Maximum {maxSize} MB allowed.",
+  "ERROR_FILE_INVALID_TYPE": "Invalid file type.",
+
+  "ERROR_ACCOUNT_BANNED": "Your account has been banned. Contact support for details.",
+  "ERROR_ACCOUNT_RESTRICTED": "Your account has been temporarily restricted.",
+
+  "ERROR_MAINTENANCE": "System is under maintenance. Please try again later."
+}
