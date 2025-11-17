@@ -1,0 +1,79 @@
+version: '3.8'
+
+# Development Docker Compose configuration
+# Usage: docker-compose -f docker-compose.dev.yml up
+
+services:
+  # Backend API (Development mode with hot reload)
+  backend-dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+      target: builder
+    container_name: aheryusgamebox-backend-dev
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+      - "9229:9229"  # Debug port
+    environment:
+      - NODE_ENV=development
+      - PORT=3000
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - JWT_SECRET=${JWT_SECRET:-dev-secret-key-change-in-production}
+      - CORS_ORIGINS=http://localhost:3000,http://localhost:8080
+      - REDIS_URL=redis://redis:6379
+      - DEFAULT_LANGUAGE=tr-TR
+      - SUPPORTED_LANGUAGES=tr-TR,en-US
+      - LOG_LEVEL=debug
+      - TELEMETRY_ENABLED=false
+      - MOCK_AI_SERVICES=true
+    depends_on:
+      - redis
+    networks:
+      - gamebox-network-dev
+    volumes:
+      - ./src/backend:/app
+      - /app/node_modules
+      - /app/dist
+    command: npm run start:dev
+    stdin_open: true
+    tty: true
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: aheryusgamebox-redis-dev
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - gamebox-network-dev
+    volumes:
+      - redis-data-dev:/data
+    command: redis-server --appendonly yes
+
+  # Redis Commander (Redis GUI)
+  redis-commander:
+    image: rediscommander/redis-commander:latest
+    container_name: aheryusgamebox-redis-commander
+    restart: unless-stopped
+    environment:
+      - REDIS_HOSTS=local:redis:6379
+    ports:
+      - "8081:8081"
+    depends_on:
+      - redis
+    networks:
+      - gamebox-network-dev
+    profiles:
+      - with-tools
+
+networks:
+  gamebox-network-dev:
+    driver: bridge
+
+volumes:
+  redis-data-dev:
+    driver: local

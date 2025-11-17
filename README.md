@@ -138,24 +138,67 @@ AheryusGameBOX/
 ### Gereksinimler
 
 - **Node.js:** >= 20.x
+- **npm:** >= 10.x
 - **Flutter:** >= 3.24
 - **PostgreSQL:** 14+ (veya Supabase hesabı)
+- **Docker:** >= 24.x (opsiyonel)
 - **Git:** >= 2.40
 
-### 1. Repository'yi Klonlayın
+### Otomatik Kurulum (Önerilen)
+
+```bash
+# 1. Repository'yi klonlayın
+git clone https://github.com/hallyl1978/AheryusGameBOX.git
+cd AheryusGameBOX
+
+# 2. Environment dosyası oluşturun
+make setup-env
+
+# 3. .env dosyasını düzenleyin (Supabase bilgilerinizi ekleyin)
+nano Project/config/env/.env
+
+# 4. Bağımlılıkları yükleyin
+make install
+
+# 5. Development sunucusunu başlatın
+make dev
+```
+
+**Backend:** http://localhost:3000
+**API Docs:** http://localhost:3000/api/docs
+
+### Docker ile Hızlı Başlangıç
+
+```bash
+# Environment dosyası oluşturun
+make setup-env
+
+# .env dosyasını düzenleyin
+nano Project/config/env/.env
+
+# Development ortamını başlatın
+make docker-dev
+```
+
+### Manuel Kurulum
+
+<details>
+<summary>Adım adım manuel kurulum (tıklayın)</summary>
+
+#### 1. Repository'yi Klonlayın
 
 ```bash
 git clone https://github.com/hallyl1978/AheryusGameBOX.git
 cd AheryusGameBOX
 ```
 
-### 2. Supabase Projesi Oluşturun
+#### 2. Supabase Projesi Oluşturun
 
 1. [Supabase](https://supabase.com) hesabı oluşturun
 2. Yeni proje oluşturun
 3. Database URL ve anon key'i kopyalayın
 
-### 3. Database Şemasını Kurun
+#### 3. Database Şemasını Kurun
 
 ```bash
 # Supabase SQL Editor'da sırasıyla çalıştırın:
@@ -164,46 +207,26 @@ cd AheryusGameBOX
 # 3. Project/config/schema/i18n_schema.sql
 ```
 
-Alternatif olarak (yerel PostgreSQL):
-```bash
-psql -U postgres -d aheryusgamebox < Project/config/schema/initial_schema.sql
-psql -U postgres -d aheryusgamebox < Project/config/schema/advanced_features_schema.sql
-psql -U postgres -d aheryusgamebox < Project/config/schema/i18n_schema.sql
-```
-
-### 4. Backend Kurulumu
+#### 4. Backend Kurulumu
 
 ```bash
-cd Project/src
-
-# NestJS projesi oluştur
-npm i -g @nestjs/cli
-nest new backend
-
-cd backend
+cd Project/src/backend
 
 # Bağımlılıkları yükle
-npm install @supabase/supabase-js
-npm install @nestjs/websockets @nestjs/platform-socket.io
+npm install
 
-# Environment variables
+# Environment dosyası
 cp ../../config/env/.env.example .env
 
-# .env dosyasını düzenle:
-# SUPABASE_URL=your_supabase_url
-# SUPABASE_ANON_KEY=your_anon_key
-# PORT=3000
+# .env dosyasını düzenle ve Supabase bilgilerini ekle
 
-# Servisleri kopyala
-cp -r ../backend/services src/
-
-# Çalıştır
+# Development modunda çalıştır
 npm run start:dev
 ```
 
-Backend şimdi `http://localhost:3000` adresinde çalışıyor.
+Backend: `http://localhost:3000`
 
-### 5. Frontend Kurulumu
+#### 5. Frontend Kurulumu
 
 ```bash
 cd Project/src/frontend
@@ -211,29 +234,26 @@ cd Project/src/frontend
 # Bağımlılıkları yükle
 flutter pub get
 
-# Locale dosyalarını assets'e kopyala
-mkdir -p assets/locales
-cp -r ../../locales/* assets/locales/
-
-# Cihazda çalıştır
-flutter run
-
-# Veya web'de
+# Web'de çalıştır
 flutter run -d chrome
 ```
 
-### 6. Test Edin
+</details>
 
-Backend ve Frontend çalıştıktan sonra:
+### Test Edin
 
-1. **Frontend'de:**
-   - Ana sayfayı görün
-   - Dil değiştirmeyi test edin (TR ↔ EN)
-   - Profil sayfasını kontrol edin
+```bash
+# Unit testleri çalıştır
+make test
 
-2. **Backend'de:**
-   - http://localhost:3000 adresini ziyaret edin
-   - API endpoint'lerini test edin
+# API endpoint testi
+curl http://localhost:3000/api/health
+
+# Oyunları listele
+curl http://localhost:3000/api/games?lang=tr-TR
+```
+
+**Detaylı test kılavuzu:** [Local_Testing_Guide.md](Documentation/Local_Testing_Guide.md)
 
 ## 📚 Dokümantasyon
 
@@ -244,6 +264,7 @@ Backend ve Frontend çalıştıktan sonra:
 | [Proje Başlangıç](Documentation/ProjeBaslangic.md) | Mimari ve domain referansı |
 | [Advanced Features](Documentation/Advanced_Features.md) | İleri düzey özellikler (matchmaking, analytics, AI) |
 | [i18n Guide](Documentation/i18n_Guide.md) | Çoklu dil desteği rehberi |
+| [Local Testing Guide](Documentation/Local_Testing_Guide.md) | ⭐ Yerel test ve kurulum rehberi |
 | [Tech Decisions](Documentation/Tech_Decisions.md) | Teknoloji seçimleri ve gerekçeleri |
 | [Roadmap](Documentation/Roadmap.md) | Faz bazlı geliştirme planı |
 | [Work Plan](Documentation/WorkPlan_Detayli.md) | Detaylı görevler ve roller |
@@ -263,18 +284,24 @@ Backend ve Frontend çalıştıktan sonra:
 
 - [x] Proje mimarisi ve dokümantasyon
 - [x] Database şeması tasarımı (28+ tablo)
-- [x] Backend servis iskeletleri (6 servis)
+- [x] Backend servis implementasyonları (6 servis)
 - [x] i18n altyapısı (TR/EN desteği)
 - [x] Frontend iskelet (Flutter + i18n)
 - [x] Çeviri dosyaları (150+ key)
+- [x] Database entegrasyonu (Supabase)
+- [x] NestJS modül yapısı (Game, Matchmaking)
+- [x] API endpoint'leri (RESTful)
+- [x] WebSocket Gateway (real-time)
+- [x] Unit test dosyaları (comprehensive)
+- [x] Docker konfigürasyonu (dev + prod)
+- [x] Package.json ve bağımlılıklar
+- [x] Makefile (otomatik komutlar)
 
 ### Devam Eden (🚧)
 
-- [ ] Database entegrasyonu
-- [ ] NestJS modül yapısı
-- [ ] API endpoint'leri
-- [ ] WebSocket/Realtime implementasyonu
-- [ ] Unit test'ler
+- [ ] Frontend UI components
+- [ ] E2E test'ler
+- [ ] Redis caching implementasyonu
 
 ### Planlanan (📋)
 

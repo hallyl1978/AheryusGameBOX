@@ -1,0 +1,82 @@
+version: '3.8'
+
+services:
+  # Backend API
+  backend:
+    build:
+      context: .
+      dockerfile: Dockerfile.backend
+    container_name: aheryusgamebox-backend
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - NODE_ENV=production
+      - PORT=3000
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_ANON_KEY=${SUPABASE_ANON_KEY}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - JWT_SECRET=${JWT_SECRET}
+      - CORS_ORIGINS=${CORS_ORIGINS:-http://localhost:3000}
+      - REDIS_URL=${REDIS_URL:-redis://redis:6379}
+      - DEFAULT_LANGUAGE=${DEFAULT_LANGUAGE:-tr-TR}
+      - SUPPORTED_LANGUAGES=${SUPPORTED_LANGUAGES:-tr-TR,en-US}
+      - TELEMETRY_ENABLED=${TELEMETRY_ENABLED:-false}
+      - MOCK_AI_SERVICES=${MOCK_AI_SERVICES:-true}
+    depends_on:
+      - redis
+    networks:
+      - gamebox-network
+    volumes:
+      - ./src/backend:/app
+      - /app/node_modules
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:3000/api/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
+
+  # Redis Cache
+  redis:
+    image: redis:7-alpine
+    container_name: aheryusgamebox-redis
+    restart: unless-stopped
+    ports:
+      - "6379:6379"
+    networks:
+      - gamebox-network
+    volumes:
+      - redis-data:/data
+    command: redis-server --appendonly yes --requirepass ${REDIS_PASSWORD:-}
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+  # Nginx Reverse Proxy (Optional)
+  nginx:
+    image: nginx:alpine
+    container_name: aheryusgamebox-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/nginx.conf:ro
+      - ./nginx/ssl:/etc/nginx/ssl:ro
+    depends_on:
+      - backend
+    networks:
+      - gamebox-network
+    profiles:
+      - with-nginx
+
+networks:
+  gamebox-network:
+    driver: bridge
+
+volumes:
+  redis-data:
+    driver: local
